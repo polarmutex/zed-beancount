@@ -1,7 +1,7 @@
 id = "beancount"
 name = "Beancount"
-description = "Beancount support."
-version = "0.0.3"
+description = "Comprehensive Beancount language support with LSP, syntax highlighting, and advanced IDE features."
+version = "0.1.0"
 schema_version = 1
 authors = ["Max Brunsfeld <max@zed.dev>", "Marshall Bowers <marshall@zed.dev>"]
 repository = "https://github.com/zed-extensions/beancount"
@@ -9,3 +9,42 @@ repository = "https://github.com/zed-extensions/beancount"
 [grammars.beancount]
 repository = "https://github.com/polarmutex/tree-sitter-beancount"
 commit = "c25f8034c977681653a8acd541c8b4877a58f474"
+
+[language_servers.beancount-language-server]
+name = "beancount-language-server"
+language = "Beancount"
+
+# Language server settings and capabilities
+[language_servers.beancount-language-server.settings]
+beancount.main_file = null
+beancount.journal_file = null
+beancount.check_ignore_unused_imports = true
+
+[language_servers.beancount-language-server.settings.completions]
+accounts = true
+currencies = true
+payees = true
+commodities = true
+tags = true
+links = true
+
+[language_servers.beancount-language-server.settings.diagnostics]
+balance_assertions = true
+account_validation = true
+currency_consistency = true
+date_validation = true
+syntax_errors = true
+
+[language_servers.beancount-language-server.settings.formatting]
+align_posting = true
+indent_size = 2
+currency_column = 60
+
+# Themes and styling
+[themes.beancount]
+account = "#4CAF50"
+currency = "#FF9800" 
+amount = "#2196F3"
+date = "#9C27B0"
+directive = "#F44336"
+comment = "#9E9E9E"

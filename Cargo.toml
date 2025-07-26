@@ -1,0 +1,12 @@
+[package]
+name = "beancount"
+version = "1.0.0"
+publish = false
+edition = "2021"
+
+[lib]
+path = "src/beancount.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+zed_extension_api = "0.0.6"

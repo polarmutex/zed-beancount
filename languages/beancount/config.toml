@@ -2,4 +2,46 @@ name = "Beancount"
 grammar = "beancount"
 path_suffixes = ["beancount", "bean"]
 line_comments = ["; "]
-brackets = [{ start = "\"", end = "\"", close = false, newline = false }]
+block_comment = []
+
+# Enhanced bracket pairs for better editing
+brackets = [
+    { start = "\"", end = "\"", close = true, newline = false },
+    { start = "(", end = ")", close = true, newline = true },
+    { start = "{", end = "}", close = true, newline = true }
+]
+
+# Auto-pairs for efficient editing
+auto_pairs = [
+    { start = "\"", end = "\"" },
+    { start = "(", end = ")" },
+    { start = "{", end = "}" }
+]
+
+# Word boundaries for better navigation
+word_characters = ["_", "-", ":"]
+
+# Soft wrap for long transaction lines
+soft_wrap = true
+preferred_line_length = 80
+
+# Tab configuration optimized for Beancount
+tab_size = 2
+hard_tabs = false
+
+# Scope configuration for better syntax highlighting
+scope = "source.beancount"
+
+# File icon
+icon = "icons/beancount.svg"
+
+# Language server settings
+language_servers = ["beancount-language-server"]
+
+# Formatter settings
+formatter = {
+    external = {
+        command = "bean-format",
+        arguments = ["--align-posting"]
+    }
+}
