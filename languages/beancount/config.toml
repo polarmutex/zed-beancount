@@ -2,46 +2,29 @@ name = "Beancount"
 grammar = "beancount"
 path_suffixes = ["beancount", "bean"]
 line_comments = ["; "]
-block_comment = []
+# autoclose_before = ";:.,=}])"
 
-# Enhanced bracket pairs for better editing
-brackets = [
-    { start = "\"", end = "\"", close = true, newline = false },
-    { start = "(", end = ")", close = true, newline = true },
-    { start = "{", end = "}", close = true, newline = true }
-]
+brackets = [{ start = "\"", end = "\"", close = false, newline = false }]
+# brackets = [
+#     { start = "{", end = "}", close = true, newline = true },
+#     { start = "[", end = "]", close = true, newline = true },
+#     { start = "(", end = ")", close = true, newline = true },
+#     { start = "\"", end = "\"", close = true, newline = false, not_in = ["string"] },
+# ]
 
-# Auto-pairs for efficient editing
-auto_pairs = [
-    { start = "\"", end = "\"" },
-    { start = "(", end = ")" },
-    { start = "{", end = "}" }
-]
+# auto_pairs = [
+#     { start = "\"", end = "\"" },
+#     { start = "(", end = ")" },
+#     { start = "[", end = "]" },
+#     { start = "{", end = "}" }
+# ]
 
-# Word boundaries for better navigation
-word_characters = ["_", "-", ":"]
+# word_characters = ["_", "-", ":"]
+# tab_size = 2
+# hard_tabs = false
 
-# Soft wrap for long transaction lines
-soft_wrap = true
-preferred_line_length = 80
+# language_servers = ["beancount-language-server"]
 
-# Tab configuration optimized for Beancount
-tab_size = 2
-hard_tabs = false
-
-# Scope configuration for better syntax highlighting
-scope = "source.beancount"
-
-# File icon
-icon = "icons/beancount.svg"
-
-# Language server settings
-language_servers = ["beancount-language-server"]
-
-# Formatter settings
-formatter = {
-    external = {
-        command = "bean-format",
-        arguments = ["--align-posting"]
-    }
-}
+# [formatter.external]
+# command = "bean-format"
+# arguments = ["--align-posting", "--currency-column=60"]

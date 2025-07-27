@@ -1,0 +1,94 @@
+; Example Beancount file demonstrating extension features
+; This file showcases syntax highlighting, smart completions, and validation
+
+option "title" "Personal Finance Example"
+option "operating_currency" "USD"
+
+; Account declarations with proper syntax highlighting
+1900-01-01 open Assets:Checking           USD
+1900-01-01 open Assets:Savings            USD
+1900-01-01 open Assets:Investment:Stocks  USD
+1900-01-01 open Income:Salary             USD
+1900-01-01 open Income:Dividends          USD
+1900-01-01 open Expenses:Food:Groceries   USD
+1900-01-01 open Expenses:Food:Restaurant  USD
+1900-01-01 open Expenses:Transportation:Gas USD
+1900-01-01 open Expenses:Housing:Rent     USD
+1900-01-01 open Expenses:Utilities        USD
+
+; Sample transactions demonstrating smart features
+
+; Income transaction (try typing "income" + tab for template)
+2024-01-15 * "ACME Corp" "Bi-weekly salary"
+  Assets:Checking                        2500.00 USD
+  Income:Salary                         -2500.00 USD
+
+; Expense transactions (try typing "expense" + tab)
+2024-01-16 * "Whole Foods" "Weekly groceries"
+  Assets:Checking                         -85.43 USD
+  Expenses:Food:Groceries                  85.43 USD
+
+2024-01-17 * "Joe's Diner" "Lunch with colleagues"
+  Assets:Checking                         -24.50 USD
+  Expenses:Food:Restaurant                 24.50 USD
+
+; Transportation expense (smart suggestions will recognize "gas")
+2024-01-18 * "Shell Station" "Fill up gas tank"
+  Assets:Checking                         -45.20 USD
+  Expenses:Transportation:Gas              45.20 USD
+
+; Housing expense (smart suggestions for "rent")
+2024-02-01 * "Property Management" "Monthly rent payment"
+  Assets:Checking                       -1200.00 USD
+  Expenses:Housing:Rent                  1200.00 USD
+
+; Transfer between accounts (try typing "transfer" + tab)
+2024-02-05 * "Transfer" "Move to savings"
+  Assets:Savings                          500.00 USD
+  Assets:Checking                        -500.00 USD
+
+; Investment transaction (try typing "invest" + tab)
+2024-02-10 * "E*TRADE" "Buy Apple stock"
+  Assets:Investment:Stocks                     5 AAPL @ 180.00 USD
+  Assets:Checking                          -900.00 USD
+
+; Transaction with metadata (demonstrates folding)
+2024-02-15 * "Amazon" "Office supplies" #office #supplies
+  memo: "Quarterly office supply order"
+  invoice: "INV-2024-0215"
+  Assets:Checking                         -156.78 USD
+  Expenses:Office:Supplies                 156.78 USD
+
+; Balance assertion (demonstrates validation)
+2024-02-28 balance Assets:Checking       1133.09 USD
+
+; Price entry for investment tracking
+2024-02-28 price AAPL                    185.50 USD
+
+; Dividend income
+2024-03-01 * "Apple Inc" "Quarterly dividend"
+  Assets:Checking                           12.50 USD
+  Income:Dividends                         -12.50 USD
+
+; Multi-currency transaction (demonstrates currency features)
+2024-03-05 * "European Supplier" "International purchase"
+  Assets:Checking                         -118.00 USD  ; Automatic conversion shown in hover
+  Expenses:International                   100.00 EUR
+
+; Utility bill with automatic account suggestion
+2024-03-10 * "Electric Company" "Monthly electricity bill"
+  Assets:Checking                          -89.45 USD
+  Expenses:Utilities                        89.45 USD
+
+; Another balance assertion
+2024-03-31 balance Assets:Checking        958.14 USD
+2024-03-31 balance Assets:Savings         500.00 USD
+
+; Close account demonstration
+2024-12-31 close Assets:OldAccount
+
+; Plugin usage example
+plugin "beancount.plugins.auto_accounts"
+
+; Include statement example
+include "accounts.beancount"

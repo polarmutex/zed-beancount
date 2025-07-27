@@ -1,12 +1,13 @@
 [package]
-name = "beancount"
-version = "1.0.0"
-publish = false
+name = "zed_beancount"
+version = "0.2.0"
 edition = "2021"
+publish = false
+license = "Apache-2.0"
 
 [lib]
 path = "src/beancount.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
-zed_extension_api = "0.0.6"
+zed_extension_api = "0.6.0"
