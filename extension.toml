@@ -8,7 +8,7 @@ repository = "https://github.com/zed-extensions/beancount"
 
 [grammars.beancount]
 repository = "https://github.com/polarmutex/tree-sitter-beancount"
-commit = "c25f8034c977681653a8acd541c8b4877a58f474"
+commit = "b7a2557e6c8cf1dc70a52cece1861522ad3903fc"
 
 [language_servers.beancount]
 name = "Beancount LSP"
